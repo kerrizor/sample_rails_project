@@ -1,0 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+.red_text {
+  color: red
+}
+
+#add_batch_id_field {
+  margin: 1rem 0;
+}
+
+#batch_id_form .form-control {
+  width: 40%;
+}

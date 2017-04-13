@@ -1,0 +1,45 @@
+<h2>Clearance Batch <%= @clearance_batch.id %></h2>
+
+<table class="table table-striped clearance_batch_items">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Size</th>
+      <th>Color</th>
+      <th>Retail<br>Price ea</th>
+      <th>Clearance<br>Price ea</th>
+      <th>Qty</th>
+      <th>Final Price</th>
+      <th>Savings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @items.each do |_k,item| -%>
+      <tr>
+        <td></td>
+        <td><%= item[:name] %></td>
+        <td><%= item[:type] %></td>
+        <td><%= item[:size] %></td>
+        <td><%= item[:color] %></td>
+        <td><%= number_to_currency(item[:retail]) %></td>
+        <td><%= number_to_currency(item[:price] / item[:count]) %> </td>
+        <td><%= item[:count] %></td>
+        <td><%= number_to_currency(item[:price]) %></td>
+        <td class="red_text"><%= number_to_percentage(
+                  (100 - (item[:price]/(item[:retail] * item[:count])) * 100),
+                  precision: 2,
+                ) %></td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>
+
+<div>
+  <h3>Total Price: <%= number_to_currency(@items.map{ |_k,v| v[:price] }.inject(:+)) %></h3>
+</div>
+
+<div>
+  <%= button_to("Return to Index", clearance_batches_path, class: "btn btn-link", method: :get) %>
+</div>

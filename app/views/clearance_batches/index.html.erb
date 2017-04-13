@@ -1,0 +1,22 @@
+<h2>Clearance Batches</h2>
+
+<table class="table table-striped clearance_batches">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date clearanced</th>
+      <th>Number of items clearanced</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @clearance_batches.each do |clearance_batch| -%>
+      <tr>
+        <td><%= link_to("Clearance Batch #{clearance_batch.id}", clearance_batch_path(clearance_batch)) %></td>
+        <td><%= l(clearance_batch.created_at, format: :short) %></td>
+        <td><%= clearance_batch.items.count %></td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>
+
+<%= button_to("Create New Clearance Batch", new_clearance_batch_path, class: "btn btn-primary", method: :get) %>
