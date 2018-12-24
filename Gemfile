@@ -8,6 +8,8 @@ gem "coffee-rails"
 gem "jquery-rails"
 gem "bootstrap-sass"
 
+gem 'rails-erd', group: :development
+
 group :test, :development do
   gem "byebug"
   gem "rspec-rails"
